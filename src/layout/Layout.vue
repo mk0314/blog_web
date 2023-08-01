@@ -1,25 +1,38 @@
 <template>
     <div class="home-container">
-        <div class="navLg-wrapper" :class="isActiveNav ? 'active-nav' : ''">
-            <div class="logo-text">
-                <span class="last-name">Meng</span>
-                <span class="first-name">Kun</span>
-            </div>
-
-            <div class="right-option">
-                <router-link
-                    style="text-decoration: none; color: #000"
-                    :to="item.path"
-                    v-for="(item, index) in navBarList"
-                    :key="index"
+        <nav
+            v-show="isActiveNav"
+            class="navbar navbar-expand-lg fixed-top navbar-light bg-light"
+        >
+            <div class="container">
+                <a class="navbar-brand logo-txt text-left" href="#"
+                    ><h5>Quokka</h5></a
                 >
-                    <span class="nav-text" @click="onBackTop">{{
-                        item.name
-                    }}</span>
-                </router-link>
-                <span class="nav-text" @click="onChangeTheme">切换主题</span>
+                <button
+                    class="navbar-toggler"
+                    type="button"
+                    data-bs-toggle="collapse"
+                    data-bs-target="#navbarNav"
+                    aria-controls="navbarNav"
+                    aria-expanded="false"
+                    aria-label="Toggle navigation"
+                >
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav ml-right text-right">
+                        <li class="nav-item margin-left">
+                            <a class="nav-link" href="#"><h6>首页</h6></a>
+                        </li>
+                    </ul>
+                    <ul class="navbar-nav ml-right text-right">
+                        <li class="nav-item margin-left">
+                            <a class="nav-link" href="#"><h6>首页</h6></a>
+                        </li>
+                    </ul>
+                </div>
             </div>
-        </div>
+        </nav>
         <router-view />
 
         <div class="recommended-reading">
@@ -37,34 +50,6 @@
                             <h5 class="title">{{ item.title }}</h5>
                         </section>
                     </span>
-                </div>
-            </div>
-        </div>
-
-        <div class="information">
-            <div class="information-title">
-                <h2>热门资讯</h2>
-            </div>
-            <div class="content-layout">
-                <div class="card">
-                    <div class="card-title">开源中国资讯</div>
-                    <div class="info-list">
-                        <div class="info">1111111111</div>
-                        <div class="info">1111111111</div>
-                        <div class="info">1111111111</div>
-                    </div>
-                </div>
-                <div class="card">
-                    <div class="card-title">开源中国资讯</div>
-                    <div class="info-list">
-                        <div class="info">1111111111</div>
-                        <div class="info">1111111111</div>
-                        <div class="info">1111111111</div>
-                        <div class="info">1111111111</div>
-                        <div class="info">1111111111</div>
-                        <div class="info">1111111111</div>
-                        <div class="info">1111111111</div>
-                    </div>
                 </div>
             </div>
         </div>
@@ -145,7 +130,7 @@
                     const scrollHeight =
                         document.documentElement.scrollTop ||
                         document.body.scrollTop;
-                    isActiveNav.value = scrollHeight > 864;
+                    isActiveNav.value = scrollHeight > 150;
                 });
             });
 
@@ -172,7 +157,10 @@
     });
 </script>
 
-<style lang="less" scoped>
+<style lang="scss" scoped>
+    .logo-txt {
+        color: var(--main-text-color, #ff706a);
+    }
     .home-container {
         position: relative;
         width: 100%;
@@ -503,77 +491,16 @@
                 }
             }
         }
-        .information {
-            margin: 30px 0;
-            max-width: 1100px;
-            margin: 50px auto;
-            .information-title {
-                background-image: var(
-                    --information-title-bg-img,
-                    url('https://www.dengzhanyong.com/xiaomanju/sources/information_title_default.jpg')
-                );
-                border-radius: 8px;
-                box-shadow: 0 0 3px var(--main-box-shadow-color, #999);
-                margin-bottom: 30px;
-                background-position-y: 90%;
-                h2 {
-                    font-weight: 600;
-                    line-height: 2em;
-                    margin-left: 1em;
-                    color: var(--main-color, #111);
-                }
-            }
-            .content-layout {
-                display: flex;
-                justify-content: space-around;
-                flex-wrap: wrap;
-                .card {
-                    width: 48%;
-                    overflow: hidden;
-                    border: 1px solid #ebeef5;
-                    box-shadow: 0 0 3px var(--main-box-shadow-color, #999);
-                    border-radius: 8px;
-                    background-color: var(--panel-bg, #fff) !important;
-                    .card-title {
-                        padding: 18px 20px;
-                        -webkit-box-sizing: border-box;
-                        box-sizing: border-box;
-                        border-bottom: 1px solid #ebeef5;
-                    }
-                    .info-list {
-                        max-height: 400px;
-                        overflow: hidden;
-                        overflow-y: scroll;
-                        width: 100%;
-                        padding: 0 16px;
-                        .info {
-                            padding: 0.5rem;
-                            font-size: 15px;
-                            a {
-                                display: inline-block;
-                                width: 98%;
-                                color: #3b6694;
-                                position: relative;
-                                padding-left: 1em;
-                                word-break: keep-all;
-                                white-space: nowrap;
-                                text-overflow: ellipsis;
-                                overflow: hidden;
-                                text-decoration: none;
-                            }
-                        }
-                    }
-                }
-            }
-        }
         .footer {
             .main {
                 display: flex;
-                justify-content: space-between;
+                flex-wrap: wrap;
                 margin: 80px auto 20px;
                 height: 400px;
-                width: 1140px;
+                width: 60%;
                 .main-item {
+                    flex: 0 0 33.3%;
+                    margin: auto;
                     text-align: left;
                     .title {
                         font-size: 18px;

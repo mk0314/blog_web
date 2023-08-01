@@ -1,41 +1,12 @@
 <template>
     <div class="home-container">
-        <el-carousel indicator-position="none" height="100vh">
-            <el-carousel-item v-for="item in banerList" :key="item">
-                <el-image :src="item" fit="fill" class="carousel-image">
-                </el-image>
-            </el-carousel-item>
-        </el-carousel>
-        <div class="tip-box">
-            <div class="left">
-                <div class="welcome-text">Welcome to my blog website</div>
-                <div class="notice">
-                    公告：
-                    <span class="text">
-                        近期由于工作原因，无足够的时间来更新文章，会降低更新频率，感谢大家的支持。
-                    </span>
-                </div>
-            </div>
-            <div class="right">
-                <el-image
-                    :src="avatar"
-                    class="author-image"
-                    fit="contain"
-                ></el-image>
+        <div class="g-container">
+            <div class="word" v-for="(conent, index) in tipTxtArr" :key="index">
+                {{ conent }}
             </div>
         </div>
-        <div class="my-hobby">
-            <h2 class="title">我感兴趣的方向</h2>
-            <div class="hobby-group">
-                <div class="item" v-for="item in hobbyBgList" :key="item">
-                    <el-image :src="item" class="bg-image"></el-image>
-                    <el-icon color="#409EFC" class="no-inherit">
-                        <Share />
-                    </el-icon>
-                </div>
-            </div>
-        </div>
-        <div class="introduce">
+
+        <div class="introduce" id="introduce">
             <div class="introduce-left">
                 <div class="text">
                     <p>
@@ -76,7 +47,7 @@
 </template>
 
 <script lang="ts">
-    import { ref } from 'vue';
+    import { ref, onMounted } from 'vue';
     import { Share } from '@element-plus/icons-vue';
     import { banerList, hobbyBgList, skillList } from './initData';
     import wecahtAvatar from '../../assets/wechat_Qrcode.jpg';
@@ -84,18 +55,72 @@
         components: { Share },
         setup() {
             const avatar = ref(wecahtAvatar);
-
+            const tipTxtArr = ref(['Hey,Boy', 'Welcom to', 'Quokka’s Blog']);
+            onMounted(() => {
+                scrollToDiv();
+            });
+            function scrollToDiv() {
+                setTimeout(() => {
+                    const targetDiv = document.getElementById('introduce');
+                    targetDiv?.scrollIntoView({ behavior: 'smooth' });
+                }, 8000);
+            }
             return {
                 banerList,
                 hobbyBgList,
                 avatar,
                 skillList,
+                tipTxtArr,
             };
         },
     };
 </script>
 
-<style lang="less" scoped>
+<style lang="scss" scoped>
+    $speed: 8s;
+    $wordCount: 5;
+    $mobile-max-width: 768px;
+
+    .g-container {
+        position: relative;
+        // width: 100vw;
+        height: 100vh;
+        background: #000;
+        font-family: 'Montserrat', sans-serif;
+        color: #fff;
+        font-size: 120px;
+        filter: contrast(15);
+        @media (max-width: $mobile-max-width) {
+            font-size: 30px; // 移动设备上的字体大小
+        }
+    }
+    .word {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        animation: change $speed infinite ease-in-out;
+
+        @for $i from 0 to $wordCount {
+            &:nth-child(#{$i + 1}) {
+                animation-delay: ($speed / ($wordCount + 1) * $i) - $speed;
+            }
+        }
+    }
+
+    @keyframes change {
+        0%,
+        5%,
+        100% {
+            filter: blur(0px);
+            opacity: 1;
+        }
+        50%,
+        80% {
+            filter: blur(80px);
+            opacity: 0;
+        }
+    }
     .home-container {
         position: relative;
         width: 100%;

@@ -119,7 +119,7 @@
         },
     };
 </script>
-<style lang="less" scoped>
+<style lang="scss" scoped>
     .article-container {
         .article-top {
             display: flex;

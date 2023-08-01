@@ -1,3 +1,11 @@
+<!--
+ * @Author: mengkun822 1197235402@qq.com
+ * @Date: 2023-05-31 14:13:46
+ * @LastEditors: mengkun822 1197235402@qq.com
+ * @LastEditTime: 2023-07-22 10:58:30
+ * @FilePath: \blog_web\src\views\message\Message.vue
+ * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
+-->
 <template>
     <div class="article-container">
         <div class="article-top">
@@ -48,7 +56,7 @@
         },
     };
 </script>
-<style lang="less" scoped>
+<style lang="scss" scoped>
     .article-container {
         .article-top {
             display: flex;

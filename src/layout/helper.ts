@@ -8,56 +8,6 @@
  */
 const footerMenuList = [
     {
-        firstTitle: 'Navigation',
-        secondTitle: [
-            {
-                title: '首页',
-                url: '',
-            },
-            {
-                title: '观点',
-                url: '',
-            },
-            {
-                title: '博客',
-                url: '',
-            },
-            {
-                title: '关于作者',
-                url: '',
-            },
-            {
-                title: '给我留言',
-                url: '',
-            },
-        ],
-    },
-    {
-        firstTitle: 'Follow Me',
-        secondTitle: [
-            {
-                title: '新浪微博',
-                url: '',
-            },
-            {
-                title: '微信',
-                url: '',
-            },
-            {
-                title: 'QQ',
-                url: '',
-            },
-            {
-                title: 'Email',
-                url: '',
-            },
-            {
-                title: 'CSDN',
-                url: '',
-            },
-        ],
-    },
-    {
         firstTitle: 'Blog WebSite',
         secondTitle: [
             {
@@ -206,15 +156,7 @@ const contactWayList = [
         url: '',
     },
     {
-        icon: 'icon-25mail',
-        url: '',
-    },
-    {
         icon: 'icon-liuyanmoban',
-        url: '',
-    },
-    {
-        icon: 'icon-weixin',
         url: '',
     },
 ];

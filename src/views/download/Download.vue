@@ -6,7 +6,7 @@
         <div class="article-category">
             <div
                 :class="`article-item ${
-                    selectArticleIndex === index
+                    Number(selectArticleIndex) === index
                         ? 'active-article-item'
                         : selectArticleIndex && index === 0
                         ? 'select-other'
@@ -56,7 +56,7 @@
         },
     };
 </script>
-<style lang="less" scoped>
+<style lang="scss" scoped>
     .article-container {
         .article-top {
             display: flex;
